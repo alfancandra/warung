@@ -38,6 +38,17 @@ class ProductController extends Controller
         );
     }
 
+    function getById($id){
+        $data = Product::where('id', $id)->get();
+
+        return response()->json(
+            [
+                "message" => "success",
+                "data" => $data
+            ]
+        );
+    }
+
     function put($id)
     {
         return response()->json(
