@@ -49,13 +49,23 @@ class ProductController extends Controller
         );
     }
 
-    function put($id)
+    function put($id, Request $request)
     {
+        $product = Product::where('id',$id)->first();
+        if($product){
+            return response()->json(
+                [
+                    "message" => "PUT Method success ".$product
+                ]
+            );   
+        }
         return response()->json(
             [
-                "message" => "PUT Method success ".$id
-            ]
+                "message" => "PUT Method Failed ".$id
+            ],400
         );
+
+        
     }
 
     function delete($id)
